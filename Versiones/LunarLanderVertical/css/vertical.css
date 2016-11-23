@@ -1,0 +1,209 @@
+/* Versión vertical de la aplicación */
+/*Empieza la composición del fondo*/
+html,body{
+	margin: 0px;
+	padding: 0px;
+}
+#suelo{
+	background-image: url("../img/suelo.png");
+	position: absolute;
+	background-repeat: no-repeat;
+	bottom: 0px;
+	height: 10%;
+	width: 100%;
+	min-height: 10%;
+    z-index: 2;
+	}
+#fondo{
+	background-image: url("../img/fondoRepeat.png");
+	position: absolute;
+	background-repeat;
+	top:0px;
+	height: 100%;
+	width: 100%;
+	}
+#planeta{
+	position: fixed;
+    height: 15%;
+	top: 25%;
+	right: 15%;
+    z-index: 2;
+}
+#luna{
+	position: absolute;
+	height:15%;
+	top:5%;
+	right: 5%;
+    z-index: 2;
+}
+/*Fin la composición del fondo*/
+/*Empieza el panel de información de Index*/
+#panel{
+	position: fixed;
+    background-image: url("../img/fondoPanel.png");
+    background-size: 100%;
+    background-position: center;
+    border-radius: 20px;
+    border: 6px solid #bcbce8;
+	top: 3%;
+	left: 5%;
+    width: 30%;
+    max-height: 600px;
+    height: 40%;
+}
+.imgBarra{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 35px;
+}
+.letraPanel{
+    position: relative;
+    font-family: 'neon2';
+	font-size: 40px;
+    color: #d6d6e8;
+    left: 20px;
+}
+#panelInterior1{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+}
+#panelInterior2{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    top: 37%;
+}
+#panelInterior3{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: 60px;
+}
+/*Termina el panel de información*/
+#divNave{
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+    z-index: 3;
+}
+#nave{
+	height: 100%;
+}
+/*Empieza la interfaz*/
+#invisible{
+    background-image: url("../img/fondoRepeat.png");
+    background-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: /*none*/ ; 
+}
+#imgAbout{
+    position: fixed;
+    height: 12%;
+    bottom: 45%;
+    right: 5%;
+}
+#imgReinicio{
+    position: fixed;
+    height: 12%;
+    bottom: 30%;
+    left: 5%;
+}
+#imgInstrucciones{
+    position: fixed;
+    height: 12%;
+    bottom: 30%;
+    right: 5%;
+}
+#imgPlay{
+    position: absolute;
+    height: 12%;
+    bottom: 15%;
+    left: 5%;
+}
+#imgPausa{
+    position: absolute;
+    height: 12%;
+    bottom: 15%;
+    left: 5%;
+    display: ;
+}
+#imgPropulsor{
+    position: absolute;
+    height: 12%;
+    bottom: 15%;
+    right: 5%;
+}
+/*Fin interfaz*/
+/*Empieza procesamiento de texto*/
+@font-face {
+    font-family: 'neon2';
+    src: url("../font/neon2.ttf");
+}
+h1{
+    font-family: 'neon2';
+    color: #adcfff;
+    text-align: center;
+}
+.letrasInstrucciones{
+    font-family: 'neon2';
+    text-indent: 50px;
+    text-align: justify;
+    color: #adcfff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/*Fin procesamiento de texto*/
+/*Empiezan menús de instrucciones y de about*/
+.fondoMenu{
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#informacion{
+    position:fixed;
+    top: 20%;
+    width: 80%;
+	height: 70%;
+	left: 10%;
+}
+#manual{
+	position:fixed;
+    background-image: url("../img/fondoMenu.png");
+    background-repeat: repeat-x;
+    border-radius: 20px;
+    border: 6px solid #bcbce8;
+    top: 8%;
+	right: 10%;
+	left: 10%;
+    z-index: 3;
+}
+#about{
+	position:fixed;
+    background-image: url("../img/fondoMenu.png");
+    border-radius: 20px;
+    border: 6px solid #bcbce8;
+    top: 10%;
+	right: 10%;
+	left: 10%;
+    max-height: 350px;
+    z-index: 3;
+    overflow: scroll;
+}
+#lunaInstrucciones{
+	position: absolute;
+	height:12%;
+	right: 2%;
+}
+#libroInstrucciones{
+    position: fixed;
+    bottom: 13%;
+    height: 15%;
+    right: 38%;
+}
