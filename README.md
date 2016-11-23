@@ -8,4 +8,8 @@ En la carpeta _Documentación de Proyecto_ aparece el .pdf que Lamiae me había 
 * Detalles sobre el tratamiento de las imágenes.
 
 ## Estructura de los directorios:
-El directorio principal es ProyectoLunarLander,
+El directorio principal es ProyectoLunarLander, en el esta la _Documentación de Proyecto_ donde he guardado el .pdf que Lamie me pasó, y una carpeta de _Versiones_, dentro hay dos carpetas que guandan respectivamente las versiones _Horizontal_ y _Vertical_ del juego y sus .html de __index.html__ (el juego principal), el __instrucciones.html__ (con las instrucciones) y el __about.html__ (con la información general del jeugo) .
+
+En cada una de las versiones, hay una carpeta .css que guarda dicho documento, una carpeta donde estan las imágenes, el icono del juego y el gif de la nave.
+
+Una carpeta _font_ donde esta la fuente que me pidieron para el videojuego y una carpeta _js_ vacia para cuando haya que empezar con el.
