@@ -1,0 +1,545 @@
+/* Versión horizontal de la aplicación */
+/*Empieza la composición del fondo*/
+    html,body{
+    	margin: 0px;
+    	padding: 0px;
+        overflow: hidden;
+    }
+    #suelo{
+    	background-image: url("../img/suelo.png");
+    	position: absolute;
+    	background-repeat: no-repeat;
+    	bottom: 0px;
+    	height: 10%;
+    	width: 100%;
+    	min-height: 10%;
+        z-index: 2;
+    	}
+    #fondo{
+    	background-image: url("../img/fondoRepeat.png");
+    	position: absolute;
+    	background-repeat;
+    	top:0px;
+    	height: 100%;
+    	width: 100%;
+    	}
+    #planeta{
+    	position: fixed;
+        height: 35%;
+    	top: 25%;
+    	right: 15%;
+        display: block;
+    }
+    #luna           {
+    	position: absolute;
+    	height:15%;
+    	top:5%;
+    	right: 5%;
+    }
+/*Fin la composición del fondo*/
+/*Empieza el panel de Informacion*/
+    /*Globales para informacion*/
+        #panel{
+        	position: fixed;
+            background-image: url("../img/fondoPanel.png");
+            background-size: 100%;
+            background-position: center;
+            border-radius: 5px;
+            border: 3px solid #bcbce8;
+        	top: 3%;
+        	left: 3%;
+            width: 35%;
+            height: 40%;
+            max-width: 300px;
+            -moz-filter: grayscale(100%);
+            min-width: 250px;
+        }
+        #panelBloqueadoFantasma{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 5;
+            opacity: 0.5;
+            background-color: black;
+        }
+        /*#panelBloqueadoFantasma{
+            position: absolute;
+            border: 3px;
+            border-radius: 5px solid;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 3;
+            opacity: 0.5;
+            background-color: grey;
+            min-width: 20%;
+        }*/
+        .caja{
+            position: relative;
+            padding-left: 25%;
+            height: 33%;
+            width: 75%;
+        }
+        .letraPanel{
+            text-align: center;
+            position: relative;
+            font-family: 'neon2';
+            font-size: 25px;
+            color: #d6d6e8;
+        }
+        .imgBarra{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #barraFuel{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .separador{         /*El separador que evita que vibren los elementos*/
+            position: relative;
+            float: left;
+            width: 49%;
+            height: 100%;
+        }
+    /*Empieza la altitud */
+        #divTextoAltitud{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 83%;
+            height: 20%;
+            border-radius: 1px;
+            border-bottom: 3px solid #bcbce0;
+        }
+        #divBarraAltitud{
+            position: absolute;
+            padding-bottom: 0px;
+            width: 15%;
+            height: 98%;
+            border-radius: 1px;
+            border: 3px solid #bcbce8;
+        }
+        #barraAltitud{
+            position: absolute;
+            bottom: 0;
+            text-align: left;
+            width: 100%;
+            max-height: 100%;
+            height: 100%;
+            border-radius: 5px;
+            border-bottom: 10px;
+        }
+        #letraPanelAltitud{
+            text-align: left;
+            padding-left: 5px;
+            position: relative;
+            float: left;
+            width: 45%;
+            font-family: 'neon2';
+            font-size: 25px;
+            color: #d6d6e8;
+            padding-top: 7%;
+        }
+        #altitudActual{
+            position: relative;
+            float: right;
+            width: 47%;
+            font-family: 'neon2';
+            font-size: 20px;
+            color: #d6d6e8;
+            padding-top: 7%;
+        }
+    /*Termina la altitud*/
+    /*Empieza la velocidad*/
+        #divVelocidad{
+            position: absolute;
+            bottom: 40%;
+            right: 0;
+            width: 78.5%;
+            height: 30%;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #divBarraVelocidad{
+            position: absolute;
+            bottom: 8%;
+            right: 1%;
+            width: 100%;
+            height: 30%;
+            border-radius: 1px;
+            border: 3px solid #bcbce8;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        #divVelocidadPositiva, #divVelocidadNegativa{
+            width: 50%;
+            height: 100%;
+            display: inline-block;
+        }
+        #velocidadNegativa, #velocidadPositiva{
+            width: 0%;
+            max-width: 100%;
+        }
+        #velocidadNegativa{
+            float: right;
+        }
+
+        #letraPanelVelocidad{
+            text-align: right;
+            padding-right: 9px;
+            float: right;
+            width: 45%;
+            font-family: 'neon2';
+            font-size: 20px;
+            color: #d6d6e8;
+            padding-top: 4%;
+        }
+        #velocidadActual{
+            width: 47%;
+            margin-left: 0;
+            font-family: 'neon2';
+            font-size: 20px;
+            color: #d6d6e8;
+            padding-top: 4%;
+        }
+    /*Termina la velocidad*/
+    /*Empieza el fuel*/
+        #divFuel{
+            position: absolute;
+            bottom: 1%;
+            right: 0;
+            width: 78.5%;
+            height: 30%;
+            border-radius: 4px;
+        }
+        #divBarraFuel{
+            position: absolute;
+            bottom: 8%;
+            right: 1%;
+            width: 100%;
+            height: 30%;
+            border-radius: 1px;
+            border: 3px solid #bcbce8;
+        }
+        #letraPanelFuel{
+            text-align: right;
+            padding-right: 5px;
+            float: right;
+            width: 45%;
+            font-family: 'neon2';
+            font-size: 25px;
+            color: #d6d6e8;
+            padding-top: 4%;
+        }
+        #fuelDoble{
+            text-align: left;
+            width: 45%;
+            font-family: 'neon2';
+            font-size: 25px;
+            color: #d6d6e8;
+            padding-top: 4%;
+        }
+    /*Termina el fuel*/
+/*Termina el panel de Informacion*/
+/*Empieza todo lo referente a pausar el juego*/
+        /*Imagen que genera el despliegue menuPausa*/
+        #imgContenedorPausa{        
+            position: absolute;
+            height: 12%;
+            bottom: 15%;
+            left: 5%;
+            display: block;
+            z-index: 20;
+        }
+        /*Imagen que despliega menuPausa*/
+        #menuPausa{
+            background-image: url("../img/fondoMenu.png");
+            text-align: center;
+            position: absolute;
+            width: 60%;
+            height: 50%;
+            left: 20%;
+            top: 15%;
+            border-radius: 5px;
+            border: 3px solid #bcbce8;
+            /*display: none; /*block / none*/
+            z-index: 6;
+            transition: all 1s ease;
+            animation-delay: 2s;
+        }
+        #menuPausa.oculto{
+            top: 100%; 
+        }
+        /*Contenedor izquierdo general*/
+        #pausaIzquierda{
+            position: absolute;
+            display: inline-block;
+            background-color: none;
+            opacity: 1;
+            height: 80%;
+            width: 50%;
+            left: 0;
+        }
+        /*Contenedor derecho general*/
+        #pausaDerecha{
+            position: absolute;
+            display: inline-block;
+            height: 80%;
+            width: 50%;
+            right: 0;
+            border-left-width: thick;
+            border-left: 2px solid #bcbce8;
+        }
+        #pausaHoverDerecha{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: none;
+            margin: auto;
+        }
+        #pausaHoverIzquierda{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0.2;
+            z-index: 2;
+            display: none;
+            margin: auto;
+        }
+        /*Ids y Clases globales a menuPausa*/
+            #menuPausaCabecera{
+                position: relative;
+                width: 100%;
+                height: 20%;
+                border-bottom-width: thick;
+                border-bottom: 2px solid #bcbce8;
+            }
+            #miniTitulo{
+                position: absolute;
+                width: 100%;
+                padding-top: 3%;
+            }
+            #spanTituloPausa{
+                font-family: 'neon2';
+                color: #adcfff;
+                text-align: center;
+                font-size: 25px;
+                letter-spacing: 1px;
+            }
+            #hr {
+                position: absolute;
+                left: 50%;
+                top: 20%;
+                width:2px;
+                z-index: 7;
+                height:81%;
+                background-color: #bcbce8;
+                /*transition: 1s ease-in-out;
+                display: block;*/
+            }
+            .titulosSubcategorias{
+                position: relative;
+                display: inline-block;
+                height: 10%;
+                width: 100%;
+                margin-top: 10%;
+            
+            }
+            .letrasSubcategorias{
+                font-family: 'neon2';
+                color: #adcfff;
+                text-align: center;
+                font-size: 23px;
+                letter-spacing: 1px;
+            }
+            .contenedorOpcionesPausa{
+                position: relative;
+                display: inline-block;
+                text-align: center;
+                width: 96%;
+                height: 80%;
+                right: 0;
+                bottom: 0;
+            }
+            .imagenesSubcategorias, .imagenesSeleccion{
+                height: 50%;
+                margin-top: 10%;
+                z-index: 7;
+                display: inline-block; /*none , block*/
+                transition: 0.5s;
+            }
+            .imagenesSubcategorias:hover, .imagenesSeleccion:hover {
+                height: 55%;
+                transform: translate(0%, -5%);
+            }
+            .imagenesSeleccion{
+                height: 50%;
+                margin-top: 10%;
+                z-index: 7;
+                display: none; /*none , block*/
+                transition: 0.5s;
+            }
+        /*Div izquierdo, opciones de reinicio y continuar jugando*/
+/*Termina todo lo referente a pausar el juego*/
+/*Empiezan los objetos de la pantalla */
+    #divNave{
+        position: fixed;
+        text-align: center;
+        top: 5%;
+        width: 100%;
+        height: 20%;
+        z-index: 3;
+    }
+    #nave{
+    	height: 100%;
+    }
+    #imgPropulsor{
+        position: absolute;
+        height: 12%;
+        bottom: 15%;
+        right: 5%;
+        z-index: 4;
+    }
+/*Terminan los objetos de la pantalla*/
+/*Empieza los menus de fin de partida*/
+    #ganado{
+        background-image: url("../img/fondoMenu.png");
+        text-align: center;
+        position: absolute;
+        border-radius: 5px;
+        border: 3px solid #bcbce8;
+        width: 50%;
+        height: 60%;
+        left: 25%;
+        top: 10%;
+        z-index: 6;
+        /*display: none; /*block / none*/
+        transition: all 1s ease;
+    }
+    #perdido{
+        background-image: url("../img/fondoMenu.png");
+        text-align: center;
+        position: absolute;
+        border-radius: 5px;
+        border: 3px solid #bcbce8;
+        width: 50%;
+        height: 60%;
+        left: 25%;
+        top: 15%;
+        z-index: 6;
+        /*display: block; /*block / none*/
+        transition: all 1s ease;
+    }
+    #ganado.ocultoGanado{
+        top: 100%;
+    }
+    #perdido.ocultoPerdido{
+        top: 100%;
+    }
+    #imgReinicio{
+        height: 25%;
+        bottom: 10%;
+    }
+    #enhorabuena{           /*La imagen al aterrizar correctamente*/
+        top: 15%;
+        width: 50%;
+        height: 40%;
+    }
+    #intentos{
+        font-family: 'neon2';
+        color: #adcfff;
+        font-size:25px;
+
+    }
+/*Termina los menus de fin de partida*/
+/*Empieza el procesamiento de text en general*/
+    @font-face {
+        font-family: 'neon2';
+        src: url("../font/neon2.ttf");
+    }
+    h1, h2, h3, p, #velocidadActual{
+        font-family: 'neon2';
+        color: #adcfff;
+        text-align: center;
+        font-size:25px;
+    }
+    #fuelActual{
+        font-family: 'neon2';
+        text-align: center;
+        font-size:25px;
+    }
+    .letrasInstrucciones{
+        font-family: 'neon2';
+    	font-size: 25px;
+        text-align: center;
+        color: #adcfff;
+    }
+/*Termina el procesamiento de text en general*/
+/*Menús de instrucciones y de about*/
+    .divHorizontalCentrado{
+        position: fixed;
+        bottom: 10%;
+        width: 100%;
+        text-align: center;
+        height: 20%;
+    }
+    #informacion{
+        position:fixed;
+        top: 20%;
+        width: 80%;
+    	height: 70%;
+    	left: 10%;
+    }
+    #manual{
+    	position:fixed;
+        background-image: url("../img/fondoMenu.png");
+        background-repeat: repeat-x;
+        border-radius: 20px;
+        border: 3px solid #bcbce8;
+        top: 10%;
+    	right: 10%;
+    	left: 10%;
+        z-index: 3;
+    }
+    #about{
+    	position:fixed;
+        background-image: url("../img/fondoMenu.png");
+        border-radius: 20px;
+        border: 6px solid #bcbce8;
+        min-width: 700px;
+        top: 10%;
+    	right: 10%;
+    	left: 10%;
+        z-index: 3;
+    }
+    #lunaInstrucciones{
+    	position: absolute;
+    	height:12%;
+    	top:1%;
+    	right: 2%;
+    }
+    #libroInstrucciones{
+        position: relative;
+        height: 75%;
+    }
+    #barraVelocidad{
+        width: 100%
+    }
+/*Efecto giro en imagenes*/
+.giro:hover {
+-webkit-transform: rotate(-7deg);
+-moz-transform: rotate(-7deg);
+-ms-transform: rotate(-7deg);
+transform: rotate(-7deg);
+-webkit-transition: all 0.5s ease-out;
+-moz-transition: all 0.5s ease;
+-ms-transition: all 0.5s ease;
+}

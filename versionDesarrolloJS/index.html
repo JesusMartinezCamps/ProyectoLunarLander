@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- Página principal de la aplicación-->
+<html>
+	<head>
+		<!-- Información en la cabezera -->
+		<title>Lunar Lander</title>
+        <meta charset="UTF-8">
+		<!-- La siguiente linea linca la página con la hoja CSS -->
+		<link rel="stylesheet" href="css/horizontal.css">
+        <!-- La siguiente linea linca la página con la hoja CSS -->
+        <script src="js/js.js" language="javascript" type="text/javascript"></script>
+        <!-- La siguiente linea permite poner acentos en la página-->
+		<meta name="description" content="Videojuego Lunar Lander de Jesús Martínez, proyecto de Lenguaje de marcas del Ciclo Formativo Dual en el IES Borja Moll."/>
+        <!-- La siguiente linea pone el icono que hay en el navegador-->
+        <link rel="icon" type="img/png" href="img/favicon.ico"/>
+	</head>
+	<body>
+        <div id="panelBloqueadoFantasma">
+        </div>
+		<!--Empieza composicion fondo-->
+    		<div id="fondo" alt="fondo"></div>
+    		<div id="suelo" alt="suelo"></div>
+            <img id="planeta" src="img/planeta.png" alt="planeta">
+            <img id="luna" src="img/luna.png" alt="luna">
+		<!--Fin composición fondo-->
+        <!--Empieza todo lo referente a pausar el juego-->
+            <img onclick="pausarJuego();" class="giro" id="imgContenedorPausa" src="img/pausa.png" alt="pausa">
+            <div id="menuPausa" class="oculto">
+                <!--Cabezera con el titulo del menú-->
+                <div id="menuPausaCabecera">
+                    <div id="miniTitulo">
+                        <span id="spanTituloPausa">Menú de Pausa</span>
+                    </div>
+                </div>                     
+                <!--Div izquierdo, opciones de reinicio y continuar jugando-->
+                <div id="pausaIzquierda">
+                    <div id="pausaHoverIzquierda">
+                    </div>
+                    <!--Titulo izquierdo-->
+                    <div class="titulosSubcategorias">
+                        <span id="opcionesJuego" class="letrasSubcategorias">Opciones de juego</span>
+                    </div>
+                    <!--Div que contiene las opciones desplegadas-->
+                    <div class="contenedorOpcionesPausa">
+                        <!--Imagen que te da a elegir-->
+                        <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="desplegarEngranaje();" id="engranaje" class="imagenesSubcategorias" src="img/engranaje.png" alt="engranaje">
+                        <!--Imagenes que aparecen depues de elegir-->
+                        <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="reanudar();" id="reanudar" class="imagenesSeleccion" src="img/play.png" alt="play">
+                        <a href="about.html"><img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="about();" id="jsAbout" class="imagenesSeleccion" src="img/about.png" alt="informacion"></a>
+                    </div>
+                </div>
+                <!--Linea divisoria-->
+                <!--Div derecho, información e instrucciones-->
+                <div id="pausaDerecha">
+                    <div id="pausaHoverDerecha">
+                    </div>
+                    <!--Titulo derecho-->
+                    <div class="titulosSubcategorias">
+                        <span id="opcionesInformacion" class="letrasSubcategorias">Información</span>
+                    </div>
+                    <!--Div que contiene las opciones desplegadas-->
+                    <div class="contenedorOpcionesPausa">
+                        <!--Imagen que te da a elegir-->
+                        <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="desplegarBombilla();" id="bombilla" class="imagenesSubcategorias" src="img/bombilla.png" alt="bombilla">
+                        <!--Imagenes que aparecen depues de elegir-->
+                        <a href="instrucciones.html"><img onmouseover="bombillaHover()" onmouseout="bombillaOut()" id="instrucciones" class="imagenesSeleccion" src="img/instrucciones.png" alt="instrucciones"></a>
+                        <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="reiniciarJuego();" id="reiniciar" class="imagenesSeleccion" src="img/reinicio.png" alt="reinicio">
+                    </div>
+                </div>
+            </div>
+        <!--Termina todo lo referente a pausar el juego-->
+        <!--Empiezan los menus de final de partida-->
+            <div id="perdido" class="ocultoPerdido" >
+                <h2>¡Has estrellado la nave!</h2><br>
+                <h3>Puedes volver a intentarlo de nuevo</h3>
+                <p> Intentos realizados: </p> <span id="intentos">0</span></b><br>
+                <img onclick="reiniciarJuego();" class="giro" id="imgReinicio" src="img/reinicio.png" alt="reinicio">
+            </div>
+            <div id="ganado" class="ocultoGanado">
+                <h2>¡No te has estrellado!</h2>
+                <img id="enhorabuena" src="img/enhorabuena.png"><br>
+                <img onclick="reiniciarJuego();" class="giro" id="imgReinicio" src="img/reinicio.png" alt="reinicio">
+            </div>
+        <!--Terminan los menus de final de partida-->
+        <!--Empieza panel información-->
+            <div id="panel">
+            
+                <div id="divBarraAltitud">
+                    <img id="barraAltitud" src="img/barraAltitud.png">
+                </div>
+                <div id="divTextoAltitud">
+                    <div id="letraPanelAltitud">ALTITUD</div>
+                    <div id="altitudActual">0</div>
+                </div>
+                <div id="divVelocidad">
+                    <div id="letraPanelVelocidad">VELOCIDAD</div>
+                    <div id="velocidadActual">
+                        <div class="separador"> <!--Funcionan como separadores, de forma que no vibren los elementos por el cambio de numeros -->
+                            <span id="ms">0</span>
+                        </div>
+                        <div class="separador"> <!--Funcionan como separadores, de forma que no vibren los elementos por el cambio de numeros -->
+                            <span>m/s</span>
+                        </div>
+                    </div>
+                    <div id ="divBarraVelocidad">
+                        <div id="divVelocidadNegativa"><img class="imgBarra" id="velocidadNegativa" src="img/barraNeg.png"></div>
+                        <div id="divVelocidadPositiva"><img class="imgBarra" id="velocidadPositiva" src="img/barra.png"></div>
+                          <!-- IDEA, el centro es 0, a la derecha vel. positiva e izquierda vel. negativa, con colores diferentes-->
+                    </div>  
+                </div>
+                <div id="divFuel">
+                    <div id="letraPanelFuel">FUEL</div> <!-- Letras de fuel -->
+                    <div id="fuelDoble">
+                        <!--<div id="fuelActual">-->
+                        <div class="separador">
+                            <span id="fuelActual">100</span>
+                        </div>
+                        <div class="separador">
+                            <span>%</span>
+                        </div>
+                    </div>
+                    <div id="divBarraFuel">
+                        <img id="barraFuel" src="img/barraFuel.png">
+                    </div>
+                </div>
+            </div>
+        <!--Termina panel informacion-->
+        <div id="divNave">
+            <img id="nave" src="img/gifOff.gif" alt="nave">
+        </div>
+        <a href="#" onmousedown="propulsar()" onmouseup="noPropulsar()"><img class="giro" id="imgPropulsor" src="img/propulsor.png" alt="propulsor"></a>
+	</body>
+</html>
