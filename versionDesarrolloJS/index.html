@@ -2,17 +2,13 @@
 <!-- Página principal de la aplicación-->
 <html>
 	<head>
-		<!-- Información en la cabezera -->
 		<title>Lunar Lander</title>
         <meta charset="UTF-8">
-		<!-- La siguiente linea linca la página con la hoja CSS -->
-		<link rel="stylesheet" href="css/horizontal.css">
-        <!-- La siguiente linea linca la página con la hoja CSS -->
+		<link rel="stylesheet" href="css/vertical.css">
         <script src="js/js.js" language="javascript" type="text/javascript"></script>
-        <!-- La siguiente linea permite poner acentos en la página-->
 		<meta name="description" content="Videojuego Lunar Lander de Jesús Martínez, proyecto de Lenguaje de marcas del Ciclo Formativo Dual en el IES Borja Moll."/>
-        <!-- La siguiente linea pone el icono que hay en el navegador-->
         <link rel="icon" type="img/png" href="img/favicon.ico"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
 	</head>
 	<body>
         <div id="panelBloqueadoFantasma">
@@ -31,8 +27,8 @@
                     <div id="miniTitulo">
                         <span id="spanTituloPausa">Menú de Pausa</span>
                     </div>
-                </div>                     
-                <!--Div izquierdo, opciones de reinicio y continuar jugando-->
+                </div>                  
+                <!--Div superior, opciones de reinicio y continuar jugando-->
                 <div id="pausaIzquierda">
                     <div id="pausaHoverIzquierda">
                     </div>
@@ -47,9 +43,9 @@
                         <!--Imagenes que aparecen depues de elegir-->
                         <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="reanudar();" id="reanudar" class="imagenesSeleccion" src="img/play.png" alt="play">
                         <a href="about.html"><img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="about();" id="jsAbout" class="imagenesSeleccion" src="img/about.png" alt="informacion"></a>
+                        <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="dificultadF();" id="dificultadF" class="imagenesSeleccion" src="img/dificultadF.png" alt="DificultadFacil"> 
                     </div>
                 </div>
-                <!--Linea divisoria-->
                 <!--Div derecho, información e instrucciones-->
                 <div id="pausaDerecha">
                     <div id="pausaHoverDerecha">
@@ -65,26 +61,67 @@
                         <!--Imagenes que aparecen depues de elegir-->
                         <a href="instrucciones.html"><img onmouseover="bombillaHover()" onmouseout="bombillaOut()" id="instrucciones" class="imagenesSeleccion" src="img/instrucciones.png" alt="instrucciones"></a>
                         <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="reiniciarJuego();" id="reiniciar" class="imagenesSeleccion" src="img/reinicio.png" alt="reinicio">
+                        <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="dificultadD()" id="dificultadD" class="imagenesSeleccion" src="img/dificultadD.png" alt="DificultadoDificil"></a>
+                    </div>
+                </div>
+                <div id="pausaDificultad">
+                    <div id="pausaHoverDificultad">
+                    </div>
+                    <!--Titulo dificultad-->
+                    <div class="titulosSubcategorias">
+                        <span id="opcionesDificultad" class="letrasSubcategorias">Dificultad</span>
+                    </div>
+                    <!--Div que contiene las opciones desplegadas-->
+                    <div class="contenedorOpcionesDificultad">
+                        <!--Imagen que te da a elegir-->
+                        <img onmouseover="dificultadHover()" onmouseout="dificultadOut()" onclick="desplegarDificultad();" class="imagenesSubcategorias" src="img/dificultad.png" alt="dificultad">
                     </div>
                 </div>
             </div>
         <!--Termina todo lo referente a pausar el juego-->
         <!--Empiezan los menus de final de partida-->
             <div id="perdido" class="ocultoPerdido" >
-                <h2>¡Has estrellado la nave!</h2><br>
-                <h3>Puedes volver a intentarlo de nuevo</h3>
-                <p> Intentos realizados: </p> <span id="intentos">0</span></b><br>
-                <img onclick="reiniciarJuego();" class="giro" id="imgReinicio" src="img/reinicio.png" alt="reinicio">
+                <div class="contenedorTitulo">
+                    <span id="tituloPerdido">¡Has perdido!</span>
+                </div>
+                <div class="contenedorSubtitulo">
+                    <div id="contadorIntentos">
+                        <span class="textoSubtitulo" id="texto">Intentalo de nuevo</span>
+                        <span id="intentosRealizados"> Intentos realizados: </span><span id="intentos">0</span>
+                    </div>
+                </div>
+                <div class="divImagenInferior">
+                    <div id ="mostrarCambioDificultadF">
+                        <img class="giro" onclick="dificultadF();" id="imgDificultadF" src="img/dificultadF.png" alt="DificultadFacil"> 
+                    </div>
+                    <div id ="mostrarReinicioP">
+                        <img onclick="reiniciarJuego();" class="giro" id="imgReinicioNormal" src="img/reinicio.png" alt="reinicio">
+                    </div>
+                </div>
             </div>
             <div id="ganado" class="ocultoGanado">
-                <h2>¡No te has estrellado!</h2>
-                <img id="enhorabuena" src="img/enhorabuena.png"><br>
-                <img onclick="reiniciarJuego();" class="giro" id="imgReinicio" src="img/reinicio.png" alt="reinicio">
+                <div class="contenedorTitulo">
+                    <span id="tituloGanado">¡Has ganado!</span>
+                </div>
+                <div class="contenedorSubtitulo">
+                    <div id="contadorIntentos">
+                        <span class="textoSubtitulo">¡Enhorabuena!</span>
+                        <span class="textoSubtitulo" id="texto2">Intentalo de nuevo para demostrar que no fue sido solo suerte</span>
+                        <span id="intentosRealizadosGanados"> Aterrizajes seguidos: </span><span id="aterrizajes">0</span>
+                    </div>
+                </div>
+                <div class="divImagenInferior">
+                    <div id ="mostrarCambioDificultadD">
+                        <img  class="giro" onclick="dificultadD();" id="imgDificultadD" src="img/dificultadD.png" alt="DificultadDificil"> 
+                    </div>
+                    <div id ="mostrarReinicioG">
+                        <img onclick="reiniciarJuego();" class="giro" id="imgReinicioG" src="img/reinicio.png" alt="reinicio">
+                    </div>
+                </div>
             </div>
         <!--Terminan los menus de final de partida-->
         <!--Empieza panel información-->
             <div id="panel">
-            
                 <div id="divBarraAltitud">
                     <img id="barraAltitud" src="img/barraAltitud.png">
                 </div>
@@ -99,7 +136,7 @@
                             <span id="ms">0</span>
                         </div>
                         <div class="separador"> <!--Funcionan como separadores, de forma que no vibren los elementos por el cambio de numeros -->
-                            <span>m/s</span>
+                            <span id="msEstatico">m/s</span>
                         </div>
                     </div>
                     <div id ="divBarraVelocidad">
@@ -112,7 +149,7 @@
                     <div id="letraPanelFuel">FUEL</div> <!-- Letras de fuel -->
                     <div id="fuelDoble">
                         <!--<div id="fuelActual">-->
-                        <div class="separador">
+                        <div id="cien" class="separador">
                             <span id="fuelActual">100</span>
                         </div>
                         <div class="separador">
