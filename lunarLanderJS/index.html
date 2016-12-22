@@ -32,8 +32,6 @@
                     </div>                  
                     <!--Div superior, opciones de reinicio y continuar jugando-->
                     <div id="pausaIzquierda">
-                        <div id="pausaHoverIzquierda">
-                        </div>
                         <!--Titulo izquierdo-->
                         <div class="titulosSubcategorias">
                             <span id="opcionesJuego" class="letrasSubcategorias">Opciones de juego</span>
@@ -41,17 +39,16 @@
                         <!--Div que contiene las opciones desplegadas-->
                         <div class="contenedorOpcionesPausa">
                             <!--Imagen que te da a elegir-->
-                            <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="desplegarEngranaje();" id="engranaje" class="imagenesSubcategorias" src="img/engranaje.png" alt="engranaje">
+                            <img onclick="desplegarEngranaje();" id="engranaje" class="imagenesSubcategorias" src="img/engranaje.png" alt="engranaje">
                             <!--Imagenes que aparecen depues de elegir-->
-                            <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="reanudar();" id="reanudar" class="imagenesSeleccion" src="img/play.png" alt="play">
-                            <a href="about.html"><img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="about();" id="jsAbout" class="imagenesSeleccion" src="img/about.png" alt="informacion"></a>
-                            <img onmouseover="engranajeHover()" onmouseout="engranajeOut()" onclick="dificultadF();" id="dificultadF" class="imagenesSeleccion" src="img/dificultadF.png" alt="DificultadFacil"> 
+                            <img onclick="reanudar();" id="reanudar" class="imagenesSeleccion" src="img/play.png" alt="play">
+                            <a href="about.html"><img onclick="about();" id="jsAbout" class="imagenesSeleccion" src="img/about.png" alt="informacion"></a>
+                            <img onclick="dificultadF();" id="dificultadF" class="imagenesSeleccion" src="img/dificultadF.png" alt="DificultadFacil"> 
                         </div>
                     </div>
                     <!--Div derecho, información e instrucciones-->
                     <div id="pausaDerecha">
-                        <div id="pausaHoverDerecha">
-                        </div>
+
                         <!--Titulo derecho-->
                         <div class="titulosSubcategorias">
                             <span id="opcionesInformacion" class="letrasSubcategorias">Información</span>
@@ -59,16 +56,15 @@
                         <!--Div que contiene las opciones desplegadas-->
                         <div class="contenedorOpcionesPausa">
                             <!--Imagen que te da a elegir-->
-                            <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="desplegarBombilla();" id="bombilla" class="imagenesSubcategorias" src="img/bombilla.png" alt="bombilla">
+                            <img onclick="desplegarBombilla();" id="bombilla" class="imagenesSubcategorias" src="img/bombilla.png" alt="bombilla">
                             <!--Imagenes que aparecen depues de elegir-->
-                            <a href="instrucciones.html"><img onmouseover="bombillaHover()" onmouseout="bombillaOut()" id="instrucciones" class="imagenesSeleccion" src="img/instrucciones.png" alt="instrucciones"></a>
-                            <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="reiniciarJuego();" id="reiniciar" class="imagenesSeleccion" src="img/reinicio.png" alt="reinicio">
-                            <img onmouseover="bombillaHover()" onmouseout="bombillaOut()" onclick="dificultadD()" id="dificultadD" class="imagenesSeleccion" src="img/dificultadD.png" alt="DificultadoDificil"></a>
+                            <a href="instrucciones.html"><img id="instrucciones" class="imagenesSeleccion" src="img/instrucciones.png" alt="instrucciones"></a>
+                            <img  onclick="reiniciarJuego();" id="reiniciar" class="imagenesSeleccion" src="img/reinicio.png" alt="reinicio">
+                            <img onclick="dificultadD()" id="dificultadD" class="imagenesSeleccion" src="img/dificultadD.png" alt="DificultadoDificil"></a>
                         </div>
                     </div>
                     <div id="pausaDificultad">
-                        <div id="pausaHoverDificultad">
-                        </div>
+
                         <!--Titulo dificultad-->
                         <div class="titulosSubcategorias">
                             <span id="opcionesDificultad" class="letrasSubcategorias">Dificultad</span>
@@ -76,7 +72,7 @@
                         <!--Div que contiene las opciones desplegadas-->
                         <div class="contenedorOpcionesDificultad">
                             <!--Imagen que te da a elegir-->
-                            <img onmouseover="dificultadHover()" onmouseout="dificultadOut()" onclick="desplegarDificultad();" class="imagenesSubcategorias" src="img/dificultad.png" alt="dificultad">
+                            <img  onclick="desplegarDificultad();" class="imagenesSubcategorias" src="img/dificultad.png" alt="dificultad">
                         </div>
                     </div>
                 </div>
