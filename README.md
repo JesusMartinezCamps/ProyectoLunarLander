@@ -1,4 +1,5 @@
 ¡¡Importante!! Las funciones de __onmouseover__ y __onmouseout__ parecen no cargar correctamente en Chrome, pero en Firefox no da ese problema. (Explicado en el primer párrafo de "Añadidos y cambios").
+
 El readme es practicamente identico an anterior, salvo por el último punto de __Añadidos y cambios__ .
 # Documentación sobre el videojuego LunarLander, de Lenguaje de Marcas.
 En este documento se detallan los aspectos mas relevantes sobre el proyecto del videojuego web Lunar Lander.
