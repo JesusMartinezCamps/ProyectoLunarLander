@@ -153,6 +153,7 @@ function dificultadF(){
 	document.getElementById("dificultadD").style.display="none";
 	document.getElementById("dificultadF").style.display="none";
 	document.getElementById("mostrarCambioDificultadF").style.display = "none";
+	document.getElementById("panelBloqueadoFantasma").style.display="none";
 	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
 	document.getElementById("opcionesInformacion").innerHTML ="Información";
 	document.getElementById("imgContenedorPausa").style.display="inline-block";
@@ -169,6 +170,7 @@ function dificultadD(){
 	document.getElementById("menuPausa").className = "oculto";
 	document.getElementById("dificultadD").style.display="none";
 	document.getElementById("dificultadF").style.display="none";
+	document.getElementById("panelBloqueadoFantasma").style.display="none";
 	document.getElementById("imgContenedorPausa").style.display="block";
 	intentos = 0;
 	aterrizajes = 0;
@@ -180,6 +182,7 @@ function reanudar() {
 	document.getElementById("reanudar").style.display="none";
 	document.getElementById("imgContenedorPausa").style.display="block";
 	document.getElementById("reiniciar").style.display="none";
+	document.getElementById("panelBloqueadoFantasma").style.display="none";
 	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
 	document.getElementById("opcionesInformacion").innerHTML ="Información";
 }
@@ -193,6 +196,7 @@ function reiniciarJuego() {
 	document.getElementById("reiniciar").style.display="none";
 	document.getElementById("reanudar").style.display="none";
 	document.getElementById("imgContenedorPausa").style.display="block";
+	document.getElementById("panelBloqueadoFantasma").style.display="none";
 	document.getElementById("imgDificultadF").style.display="none";
 	document.getElementById("imgDificultadD").style.display="none";
 	y = 10;
@@ -216,6 +220,7 @@ function pausarJuego() {
 		document.getElementById("menuPausa").className = "";
 		document.getElementById("imgContenedorPausa").style.display="none";
 		document.getElementById("engranaje").style.display="inline-block";
+		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("bombilla").style.display="inline-block";
 		document.getElementById("nave").src="img/naveNoFuel.png";
 }
@@ -260,6 +265,7 @@ function finalizarJuego() {
 		document.getElementById("nave").src="img/explosion.png";
 		document.getElementById("fuelActual").innerHTML="0";
 		document.getElementById("barraFuel").style.width="0%";
+		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("imgContenedorPausa").style.display="none";
 		if (dificultad == dificil && intentos > 5){
 			document.getElementById("texto").innerHTML="¡Vaya! Se me ha caido este botón... Por si quieres ganar alguna...";
@@ -280,6 +286,7 @@ function finalizarJuego() {
 		document.getElementById("intentos").innerHTML=intentos;
 		document.getElementById("reiniciar").style.display="block";
 		document.getElementById("nave").src="img/naveNoFuel.png";
+		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("imgContenedorPausa").style.display="none";
 		document.getElementById("aterrizajes").innerHTML=aterrizajes;
 		if (dificultad == facil && aterrizajes > 2){
@@ -294,4 +301,65 @@ function finalizarJuego() {
 		}
 		stop();
 	}
+}
+
+//Funciones de iluminacion para el menu de pausa
+function engranajeHover(){
+	document.getElementById("pausaHoverIzquierda").style.display="block";
+	document.getElementById("pausaHoverDerecha").style.opacity ="0.7";
+	document.getElementById("pausaHoverDerecha").style.background ="black";
+	document.getElementById("pausaHoverDerecha").style.display="block";
+	document.getElementById("pausaHoverDificultad").style.opacity ="0.7";
+	document.getElementById("pausaHoverDificultad").style.background ="black";
+	document.getElementById("pausaHoverDificultad").style.display="block";
+}
+function engranajeOut(){
+	document.getElementById("pausaHoverIzquierda").style.display="none";
+	document.getElementById("pausaHoverDerecha").style.display="none";
+	document.getElementById("pausaHoverDerecha").style.background ="white";
+	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
+	document.getElementById("pausaHoverDificultad").style.display="none";
+	document.getElementById("pausaHoverDificultad").style.background ="white";
+	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
+}
+
+function bombillaHover(){
+	document.getElementById("pausaHoverDerecha").style.background="white";
+	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
+	document.getElementById("pausaHoverDerecha").style.display="block";
+	document.getElementById("pausaHoverIzquierda").style.opacity ="0.7";
+	document.getElementById("pausaHoverIzquierda").style.background ="black";
+	document.getElementById("pausaHoverIzquierda").style.display="block";
+	document.getElementById("pausaHoverDificultad").style.opacity ="0.7";
+	document.getElementById("pausaHoverDificultad").style.background ="black";
+	document.getElementById("pausaHoverDificultad").style.display="block";
+}
+function bombillaOut(){
+	document.getElementById("pausaHoverDerecha").style.display="none";
+	document.getElementById("pausaHoverIzquierda").style.display ="none";
+	document.getElementById("pausaHoverIzquierda").style.background ="white";
+	document.getElementById("pausaHoverIzquierda").style.opacity="0.2";
+	document.getElementById("pausaHoverDificultad").style.display="none";
+	document.getElementById("pausaHoverDificultad").style.background ="white";
+	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
+}
+function dificultadHover(){
+	document.getElementById("pausaHoverDificultad").style.background="white";
+	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
+	document.getElementById("pausaHoverDificultad").style.display="block";
+	document.getElementById("pausaHoverIzquierda").style.opacity ="0.7";
+	document.getElementById("pausaHoverIzquierda").style.background ="black";
+	document.getElementById("pausaHoverIzquierda").style.display="block";
+	document.getElementById("pausaHoverDerecha").style.background="black";
+	document.getElementById("pausaHoverDerecha").style.opacity ="0.7";
+	document.getElementById("pausaHoverDerecha").style.display="block";
+}
+function dificultadOut(){
+	document.getElementById("pausaHoverDificultad").style.display="none";
+	document.getElementById("pausaHoverIzquierda").style.display ="none";
+	document.getElementById("pausaHoverIzquierda").style.background ="white";
+	document.getElementById("pausaHoverIzquierda").style.opacity="0.2";
+	document.getElementById("pausaHoverDerecha").style.display="none";
+	document.getElementById("pausaHoverDerecha").style.background ="white";
+	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
 }
