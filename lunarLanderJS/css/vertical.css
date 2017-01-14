@@ -25,7 +25,7 @@
     #fondo{
         background-image: url("../img/fondoRepeat.png");
         position: absolute;
-        background-repeat;
+        background-repeat: repeat; 
         top:0px;
         height: 100%;
         width: 100%;
@@ -260,7 +260,6 @@
     #pausaIzquierda{
         position: relative;
         display: block;
-        background-color: none;
         opacity: 1;
         height: 30%;
         width: 100%;
