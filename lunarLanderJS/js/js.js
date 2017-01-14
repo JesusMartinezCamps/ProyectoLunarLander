@@ -39,23 +39,36 @@ window.onload = function(){
 		document.getElementById("panel").className="";
 		document.getElementById("imgPropulsor").className="";
 		document.getElementById("tituloFin").innerHTML="Lunar Lander 1.0";
-		document.getElementById("texto").innerHTML="Pulsa la tecla Espacio o bien el botoón Propulsar para controlar la velocidad";
+		document.getElementById("texto").innerHTML="Pulsa el botón Propulsar para controlar la velocidad";
 		document.getElementById("texto2").innerHTML="Selecciona una dificultado antes de empezar:";
 	}
-
-	window.onkeydown=function(e) {
-		var pulsarEspacio;
-		if (window.event)
-			pulsarEspacio = window.event.keyCode;
-		else if (e)
-			pulsarEspacio = e.which;
-		if (pulsarEspacio == 32){
+	/*Funciones para propulsar la nave*/
+		/*Tecla Espacio*/
+		window.onkeydown=function(e) {
+			var pulsarEspacio;
+			if (window.event)
+				pulsarEspacio = window.event.keyCode;
+			else if (e)
+				pulsarEspacio = e.which;
+			if (pulsarEspacio == 32){
+				propulsar();
+			}
+		}
+		window.onkeyup = noPropulsar;
+		/*Boton Propulsor*/
+		document.getElementById("imgPropulsor").onmousedown=function(){propulsar();};
+		document.getElementById("imgPropulsor").onmouseup=function(){noPropulsar();};
+		/*Touch en movil*/
+		var movil = document.getElementById("imgPropulsor");
+		movil.addEventListener("touchstart", pulsar, false);
+		movil.addEventListener("touchend", soltar, false);
+		function pulsar(event){
 			propulsar();
 		}
-	}
-	window.onkeyup = noPropulsar;
+		function soltar(event){
+			motorOff();
+		}
 }
-
 
 function menu2(){
 	if(document.getElementById("maestro").offsetWidth > 501){
