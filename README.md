@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 ¡¡Importante!! Las funciones de __onmouseover__ y __onmouseout__ parecen no cargar correctamente en Chrome, pero en Firefox no da ese problema. (Explicado en el primer párrafo de "Añadidos y cambios").
 
+=======
+>>>>>>> 20707be653ea5db6826376a2496d8c749c296bf9
 El readme es practicamente identico an anterior, salvo por el último punto de __Añadidos y cambios__ .
 # Documentación sobre el videojuego LunarLander, de Lenguaje de Marcas.
 En este documento se detallan los aspectos mas relevantes sobre el proyecto del videojuego web Lunar Lander.
@@ -33,9 +36,10 @@ Como resultado, todas las imágenes estan hechas desde cero, siguen un patron si
 
 
 ## Cambios tras añadir el Javascript.
-La página se ha desarrollado haciendo las comprobaciones en un navegador Firefox actualizado, y al probarlo en Chrome las funciones de __onmouseover__ y __onmouseout__ parece que dan problema, por lo tanto y al haberlas en todas las opciones de los menús no se puede navegar por ellos, mientras que en Firefox no dan ningún problema.
 
 Al empezar se creó la _branch_ __versionJS__ sobre la que se se trabajó en esta parte del proyexto hasta que finalmente todo funcionaba correctamente y se fusionó de nuevo con la rama Master.
+
+Una vez se envió el proyecto, los cambios de refactorizacin del código de hicieron en la rama __refactorizado__, y de nuevo al terminar se fusionó con la rama Master.
 
 A medida que se aprendia mas sobre JavaScript las ideas originales sobre los menús iban evolucionando, es algo que se nota especialmente en la estructura del HTML, ya que lo que empezó siendo un simple menú con los botones que vinculan a las otras dos páginas, y los botones que interactuan directamente sobre las opciones jugables, se convirtió en un menu principal que constaba de dos botones (uno para las _Opciones de juego_ con la posibilidad de reiniciar o reanudar partida, y otro para acceder a las páginas de informacin e intrucciones), al que mas tarde se le añadiria una tercera opción para acceder al cambio de dificultad.
 
