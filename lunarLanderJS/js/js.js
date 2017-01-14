@@ -1,7 +1,7 @@
 var y = 10; // altura inicial y0=10%, debe leerse al iniciar si queremos que tenga alturas diferentes dependiendo del dispositivo
 var v = 0;
 var facil = 3;
-var dificil = 30;
+var dificil = 20;
 var dificultad = facil;
 var g = dificultad;
 var a = g;
@@ -12,54 +12,82 @@ var fuelActual = 100;
 var intentos = 0;
 var bandera = true;
 var aterrizajes = 0;
+var timer;
+
 
 window.onload = function(){
-	//Encender los motores al apretar propulsor
-	document.getElementById("imgPropulsor").onclick = function propulsar() {
- 	  if (a==g){
-  		propulsar();
- 	  } else {
-  		noPropulsar();
- 	  }
+	presentacion();
+	/*Despliegue de menús*/
+	document.getElementById("imgContenedorPausa").onclick=function(){pausarJuego();};
+	document.getElementById("engranaje").onclick=function(){desplegarEngranaje();};
+	document.getElementById("bombilla").onclick=function(){desplegarBombilla();};
+	document.getElementById("desplegarDificultad").onclick=function(){desplegarDificultad();};
+	/*Funciones de botones*/
+	document.getElementById("dificultadF").onclick=function(){dificultadF();};
+	document.getElementById("dificultadFPausa").onclick=function(){dificultadF();};
+	document.getElementById("dificultadD").onclick=function(){dificultadD();};
+	document.getElementById("dificultadDPausa").onclick=function(){dificultadD();};
+	document.getElementById("imgReinicio").onclick=function(){reiniciarJuego();};
+	document.getElementById("reiniciar").onclick=function(){reiniciarJuego();};
+	document.getElementById("reanudar").onclick=function(){reanudar();};
+
+	function presentacion(){
+		stop();
+		document.getElementById("panelBloqueadoFantasma").style.display="block";
+		document.getElementById("finJuego").className="";
+		document.getElementById("imgContenedorPausa").style.display="none";
+		document.getElementById("panel").className="";
+		document.getElementById("imgPropulsor").className="";
+		document.getElementById("tituloFin").innerHTML="Lunar Lander 1.0";
+		document.getElementById("texto").innerHTML="Pulsa la tecla Espacio o bien el botoón Propulsar para controlar la velocidad";
+		document.getElementById("texto2").innerHTML="Selecciona una dificultado antes de empezar:";
 	}
-	//encender/apagar motor
-	document.getElementById("imgPropulsor").propulsar = propulsar;
-	document.getElementById("imgPropulsor").noPropulsar = noPropulsar;
-	
-	//Empezar a mover nave
-	start();
+
+	window.onkeydown=function(e) {
+		var pulsarEspacio;
+		if (window.event)
+			pulsarEspacio = window.event.keyCode;
+		else if (e)
+			pulsarEspacio = e.which;
+		if (pulsarEspacio == 32){
+			propulsar();
+		}
+	}
+	window.onkeyup = noPropulsar;
 }
+
+
 function menu2(){
 	if(document.getElementById("maestro").offsetWidth > 501){
-		document.getElementById("pausaIzquierda").style.width ="50%";
+		document.getElementById("pausaIzquierda").style.width="50%";
 		document.getElementById("pausaDerecha").style.width="50%";
-		document.getElementById("pausaDificultad").style.style="none";
-		document.getElementById("pausaIzquierda").style.height ="80%";
+		document.getElementById("pausaDificultad").style.display="none";
+		document.getElementById("pausaIzquierda").style.height="80%";
 		document.getElementById("pausaDerecha").style.height="80%";
 		document.getElementById("pausaDificultad").style.display="inline-block";
 	}else{
-		document.getElementById("pausaIzquierda").style.width ="100%";
+		document.getElementById("pausaIzquierda").style.width="100%";
 		document.getElementById("pausaDerecha").style.width="100%";
 		document.getElementById("pausaDificultad").style.width="none";
-		document.getElementById("pausaIzquierda").style.height ="45%";
+		document.getElementById("pausaIzquierda").style.height="45%";
 		document.getElementById("pausaDerecha").style.height="45%";
 		document.getElementById("pausaDificultad").style.display="inline-block";
 	}
 }
 function menu3(){
 		if(document.getElementById("maestro").offsetWidth > 501){
-			document.getElementById("pausaIzquierda").style.width ="35%";
+			document.getElementById("pausaIzquierda").style.width="35%";
 			document.getElementById("pausaDerecha").style.width="35%";
 			document.getElementById("pausaDificultad").style.width="30%";
-			document.getElementById("pausaIzquierda").style.height ="80%";
+			document.getElementById("pausaIzquierda").style.height="80%";
 			document.getElementById("pausaDerecha").style.height="80%";
 			document.getElementById("pausaDificultad").style.height="80%";
 			document.getElementById("pausaDificultad").style.display="inline-block";
 		}else{
-			document.getElementById("pausaIzquierda").style.width ="100%";
+			document.getElementById("pausaIzquierda").style.width="100%";
 			document.getElementById("pausaDerecha").style.width="100%";
 			document.getElementById("pausaDificultad").style.width="100%";
-			document.getElementById("pausaIzquierda").style.height ="30%";
+			document.getElementById("pausaIzquierda").style.height="30%";
 			document.getElementById("pausaDerecha").style.height="30%";
 			document.getElementById("pausaDificultad").style.height="30%";
 			document.getElementById("pausaDificultad").style.display="inline-block";
@@ -71,7 +99,6 @@ function start(){
 	fuelActual = fuelMaximo;
 	bandera = true;
 }
-
 function stop(){
 	clearInterval(timer);
 	bandera = false;
@@ -84,14 +111,9 @@ function moverNave(){
 	y +=v*dt;
 	document.getElementById("altitudActual").innerHTML=(73-y >= 0) ? (73-y).toFixed(0) : '0';
 	document.getElementById("barraAltitud").style.height = ((73-y)/60*100) + '%';
-	
-	//si no queda combustible
-	if (a == -g && fuelActual <= 0)
-	{
+	if (a == -g && fuelActual <= 0){
 		a = g;
-		//QUITAR FUEGO
 	}
-	//mover hasta que top sea un 75% de la pantalla
 	if (y<73){ 
 		document.getElementById("divNave").style.top = y+"%"; 
 	} else { 
@@ -99,7 +121,6 @@ function moverNave(){
 		finalizarJuego();
 	}
 }
-
 function actualizarFuel(){
 	if (bandera){
 		if (dificultad == facil){
@@ -142,224 +163,168 @@ function noPropulsar() {//motorOff
 		}
 		clearInterval(timerFuel);
 		timerFuel=null;
-		document.getElementById("fuelActual").style.color="white";
+		document.getElementById("fuelActual").style.color="#adcfff";
 	}
-}
-function dificultadF(){
-	dificultad = facil;
-	document.getElementById("texto").innerHTML="Intentalo de nuevo";
-	document.getElementById("texto2").innerHTML="Intentalo de nuevo para demostrar que no fue sido solo suerte";
-	document.getElementById("menuPausa").className = "oculto";
-	document.getElementById("dificultadD").style.display="none";
-	document.getElementById("dificultadF").style.display="none";
-	document.getElementById("mostrarCambioDificultadF").style.display = "none";
-	document.getElementById("panelBloqueadoFantasma").style.display="none";
-	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
-	document.getElementById("opcionesInformacion").innerHTML ="Información";
-	document.getElementById("imgContenedorPausa").style.display="inline-block";
-	intentos = 0;
-	aterrizajes = 0;
-	reiniciarJuego();
-}
-function dificultadD(){
-	dificultad = dificil;
-	document.getElementById("texto").innerHTML="Intentalo de nuevo";
-	document.getElementById("texto2").innerHTML="Intentalo de nuevo para demostrar que no fue sido solo suerte";
-	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
-	document.getElementById("opcionesInformacion").innerHTML ="Información";
-	document.getElementById("menuPausa").className = "oculto";
-	document.getElementById("dificultadD").style.display="none";
-	document.getElementById("dificultadF").style.display="none";
-	document.getElementById("panelBloqueadoFantasma").style.display="none";
-	document.getElementById("imgContenedorPausa").style.display="block";
-	intentos = 0;
-	aterrizajes = 0;
-	reiniciarJuego();
 }
 function reanudar() {
 	start();
-	document.getElementById("menuPausa").className = "oculto";
+	document.getElementById("menuPausa").className="oculto";
 	document.getElementById("reanudar").style.display="none";
 	document.getElementById("imgContenedorPausa").style.display="block";
 	document.getElementById("reiniciar").style.display="none";
 	document.getElementById("panelBloqueadoFantasma").style.display="none";
-	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
+	document.getElementById("opcionesJuego").innerHTML="Opciones de juego";
 	document.getElementById("opcionesInformacion").innerHTML ="Información";
 }
 function reiniciarJuego() {
-	stop();
-	document.getElementById("menuPausa").className = "oculto";
-	document.getElementById("opcionesJuego").innerHTML ="Opciones de juego";
-	document.getElementById("opcionesInformacion").innerHTML ="Información";
-	document.getElementById("ganado").className = "ocultoGanado";
-	document.getElementById("perdido").className = "ocultoPerdido";
-	document.getElementById("reiniciar").style.display="none";
-	document.getElementById("reanudar").style.display="none";
+	y=10;
+	v=0;
+	g=dificultad;
+	a=g;
+	dt=0.02;
+	fuelActual=fuelMaximo;
+	document.getElementById("finJuego").className="oculto";
+	document.getElementById("menuPausa").className="oculto";
 	document.getElementById("imgContenedorPausa").style.display="block";
 	document.getElementById("panelBloqueadoFantasma").style.display="none";
-	document.getElementById("imgDificultadF").style.display="none";
-	document.getElementById("imgDificultadD").style.display="none";
-	y = 10;
-	v = 0;
-	g = dificultad;
-	a = g;
-	dt = 0.02;
-	fuelActual=fuelMaximo;
 	document.getElementById("barraFuel").style.width="100%";
-	document.getElementById("intentos").innerHTML=intentos;
+	document.getElementById("aterrizajes").innerHTML=intentos;
 	document.getElementById("fuelActual").innerHTML=fuelMaximo;
 	document.getElementById("nave").src="img/gifOff.gif";
+	document.getElementById("reanudar").style.display="none";
+	document.getElementById("reiniciar").style.display="none";
 	bandera = true;
 	noPropulsar();
 	start();
 }
+function renombrarOpcionesPausa(){
+	document.getElementById("spanTituloPausa").innerHTML="Menú de Pausa";
+	document.getElementById("opcionesJuego").innerHTML="Opciones de Juego";
+	document.getElementById("opcionesDificultad").innerHTML="Dificultad";
+	document.getElementById("opcionesInformacion").innerHTML="Información";
+}
 function pausarJuego() {
 		stop();
+		renombrarOpcionesPausa();
 		menu3();
-		document.getElementById("spanTituloPausa").innerHTML="Menú de Pausa";
-		document.getElementById("menuPausa").className = "";
+		document.getElementById("menuPausa").className="";
 		document.getElementById("imgContenedorPausa").style.display="none";
 		document.getElementById("engranaje").style.display="inline-block";
 		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("bombilla").style.display="inline-block";
 		document.getElementById("nave").src="img/naveNoFuel.png";
 }
+function renombrarOpcionesJuego(){
+	document.getElementById("spanTituloPausa").innerHTML="Opciones de Juego";
+	document.getElementById("opcionesJuego").innerHTML="Reanudar la partida";
+	document.getElementById("opcionesInformacion").innerHTML="Reiniciar la partida";
+
+}
 function desplegarEngranaje(){
 	menu2();
+	renombrarOpcionesJuego();
 	document.getElementById("pausaDificultad").style.display="none";
 	document.getElementById("reanudar").style.display="inline-block";
 	document.getElementById("reiniciar").style.display="inline-block";
 	document.getElementById("engranaje").style.display="none";
 	document.getElementById("bombilla").style.display="none";
-	document.getElementById("opcionesJuego").innerHTML= "Reanudar la partida";
-	document.getElementById("opcionesInformacion").innerHTML= "Reiniciar la partida";
+}
+function renombrarOpcionesInformacion(){
+	document.getElementById("spanTituloPausa").innerHTML="¿Qué quieres saber?";
+	document.getElementById("opcionesJuego").innerHTML="Información acerca del juego";
+	document.getElementById("opcionesInformacion").innerHTML="Instrucciones";
+
 }
 function desplegarBombilla(){
 	menu2();
+	renombrarOpcionesInformacion();
 	document.getElementById("pausaDificultad").style.display="none";
 	document.getElementById("bombilla").style.display="none";
 	document.getElementById("engranaje").style.display="none";
 	document.getElementById("instrucciones").style.display="inline-block";
 	document.getElementById("jsAbout").style.display="inline-block";
-	document.getElementById("opcionesJuego").innerHTML= "Información";
-	document.getElementById("opcionesInformacion").innerHTML= "Instrucciones";
-	document.getElementById("spanTituloPausa").innerHTML="¿A dónde quieres ir?";
 }
 function desplegarDificultad(){
 	menu2();
 	document.getElementById("pausaDificultad").style.display="none";
 	document.getElementById("bombilla").style.display="none";
 	document.getElementById("engranaje").style.display="none";
-	document.getElementById("dificultadF").style.display="inline-block";
-	document.getElementById("dificultadD").style.display="inline-block";
-	document.getElementById("opcionesJuego").innerHTML= "Facil";
+	document.getElementById("dificultadFPausa").style.display="inline-block";
+	document.getElementById("dificultadDPausa").style.display="inline-block";
+	document.getElementById("opcionesJuego").innerHTML="Facil";
 	document.getElementById("opcionesInformacion").innerHTML= "Dificil";
-	document.getElementById("spanTituloPausa").innerHTML= "Selecciona una Dificultad";
+	document.getElementById("spanTituloPausa").innerHTML="Selecciona una Dificultad";
 }
-//Empieza la funcion para finalizar el juego, segun el aterrizaje
 function finalizarJuego() {
-	if (v>5) {
+	if (v>5) { //Se ha perdido
+		stop();
 		intentos++;
-		aterrizajes = 0;
-		document.getElementById("perdido").className = "";
+		aterrizajes=0;
+		document.getElementById("finJuego").className="";
+		document.getElementById("tituloFin").innerHTML="¡Has Perdido!";
+		document.getElementById("aterrizajes").innerHTML=intentos;
 		document.getElementById("nave").src="img/explosion.png";
 		document.getElementById("fuelActual").innerHTML="0";
 		document.getElementById("barraFuel").style.width="0%";
 		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("imgContenedorPausa").style.display="none";
-		if (dificultad == dificil && intentos > 5){
-			document.getElementById("texto").innerHTML="¡Vaya! Se me ha caido este botón... Por si quieres ganar alguna...";
-			document.getElementById("mostrarReinicioP").style.width = "50%";
-			document.getElementById("mostrarCambioDificultadF").style.display = "inline-block";
-			document.getElementById("imgDificultadF").style.display = "inline-block";
-		}else{
-			document.getElementById("intentos").innerHTML=intentos;
-			document.getElementById("mostrarReinicioP").style.width = "100%";
-			document.getElementByID("mostrarCambioDificultadF").style.display = "none";
-			document.getElementById("imgDificultadF").style.display = "none";
+		document.getElementById("imgReinicio").style.display="inline-block";
+		document.getElementById("divAterrizajes").style.display="inline-block";
+		document.getElementById("informacionAterrizajes").innerHTML="Aterrizajes fallados: ";
+		if (dificultad == dificil && intentos > 5){ // Perdido en dificil +5 intentos
+			document.getElementById("texto").innerHTML="Esta claro que esto es demasiado dificil para ti...";
+			document.getElementById("texto2").innerHTML="Yo voy dejando esto por aquí por si te aburres...";
+			document.getElementById("dificultadF").style.display="inline-block";
+		}else{ // Perdido dificil
+			document.getElementById("texto").innerHTML="Puedes volver a intentarlo.";
+			document.getElementById("texto2").innerHTML="Recuerda que tienes que aterrizar a menos de 5 m/s";
+			document.getElementById("dificultadF").style.display="none";
+			document.getElementById("dificultadD").style.display="none";
 		}
-		stop();
 	}
-	else {
+	else { //Se ha ganado
 		aterrizajes++;
-		document.getElementById("ganado").className = "";
-		document.getElementById("intentos").innerHTML=intentos;
-		document.getElementById("reiniciar").style.display="block";
+		document.getElementById("divAterrizajes").style.display="inline-block";
+		document.getElementById("informacionAterrizajes").innerHTML="Aterrizajes seguidos: ";
+		document.getElementById("finJuego").className="";
+		document.getElementById("tituloFin").innerHTML="¡Has ganado!";
+		document.getElementById("aterrizajes").innerHTML=aterrizajes;
+		document.getElementById("imgReinicio").style.display="inline-block";
 		document.getElementById("nave").src="img/naveNoFuel.png";
 		document.getElementById("panelBloqueadoFantasma").style.display="block";
 		document.getElementById("imgContenedorPausa").style.display="none";
-		document.getElementById("aterrizajes").innerHTML=aterrizajes;
-		if (dificultad == facil && aterrizajes > 2){
+		if (dificultad == facil && aterrizajes > 2){ //Racha de victorias
+			document.getElementById("texto").innerHTML="¡Esta claro que esto es demasiado facil para ti!";
 			document.getElementById("texto2").innerHTML="¡Lo tienes dominado! ¿Subes a dificil?";
-			document.getElementById("mostrarReinicioG").style.width = "45%";
-			document.getElementById("mostrarCambioDificultadD").style.display = "inline-block";
-			document.getElementById("imgDificultadD").style.display = "inline-block";
-		}else{
-			document.getElementById("texto2").innerHTML="Intentalo de nuevo para demostrar que no fue sido solo suerte";
-			document.getElementById("mostrarReinicioG").style.width = "100%";
-			document.getElementById("mostrarCambioDificultadD").style.display = "none";
+			document.getElementById("dificultadD").style.marginLeft="0";
+			document.getElementById("dificultadD").style.marginRight="10%";
+			document.getElementById("dificultadD").style.display="inline-block";
+		}else{ //Ganado sin mas
+			document.getElementById("texto").innerHTML="¡Has conseguido aterrizar!";
+			document.getElementById("texto2").innerHTML="Intentalo de nuevo para demostrar que no fue solo suerte";
 		}
 		stop();
 	}
 }
-
-//Funciones de iluminacion para el menu de pausa
-function engranajeHover(){
-	document.getElementById("pausaHoverIzquierda").style.display="block";
-	document.getElementById("pausaHoverDerecha").style.opacity ="0.7";
-	document.getElementById("pausaHoverDerecha").style.background ="black";
-	document.getElementById("pausaHoverDerecha").style.display="block";
-	document.getElementById("pausaHoverDificultad").style.opacity ="0.7";
-	document.getElementById("pausaHoverDificultad").style.background ="black";
-	document.getElementById("pausaHoverDificultad").style.display="block";
+function dificultadF(){
+	dificultad=facil;
+	document.getElementById("finJuego").className="oculto";
+	document.getElementById("dificultadF").style.display="none";
+	document.getElementById("dificultadD").style.display="none";
+	document.getElementById("dificultadFPausa").style.display="none";
+	document.getElementById("dificultadDPausa").style.display="none";
+	intentos=0;
+	aterrizajes=0;
+	reiniciarJuego();
 }
-function engranajeOut(){
-	document.getElementById("pausaHoverIzquierda").style.display="none";
-	document.getElementById("pausaHoverDerecha").style.display="none";
-	document.getElementById("pausaHoverDerecha").style.background ="white";
-	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
-	document.getElementById("pausaHoverDificultad").style.display="none";
-	document.getElementById("pausaHoverDificultad").style.background ="white";
-	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
-}
-
-function bombillaHover(){
-	document.getElementById("pausaHoverDerecha").style.background="white";
-	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
-	document.getElementById("pausaHoverDerecha").style.display="block";
-	document.getElementById("pausaHoverIzquierda").style.opacity ="0.7";
-	document.getElementById("pausaHoverIzquierda").style.background ="black";
-	document.getElementById("pausaHoverIzquierda").style.display="block";
-	document.getElementById("pausaHoverDificultad").style.opacity ="0.7";
-	document.getElementById("pausaHoverDificultad").style.background ="black";
-	document.getElementById("pausaHoverDificultad").style.display="block";
-}
-function bombillaOut(){
-	document.getElementById("pausaHoverDerecha").style.display="none";
-	document.getElementById("pausaHoverIzquierda").style.display ="none";
-	document.getElementById("pausaHoverIzquierda").style.background ="white";
-	document.getElementById("pausaHoverIzquierda").style.opacity="0.2";
-	document.getElementById("pausaHoverDificultad").style.display="none";
-	document.getElementById("pausaHoverDificultad").style.background ="white";
-	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
-}
-function dificultadHover(){
-	document.getElementById("pausaHoverDificultad").style.background="white";
-	document.getElementById("pausaHoverDificultad").style.opacity ="0.2";
-	document.getElementById("pausaHoverDificultad").style.display="block";
-	document.getElementById("pausaHoverIzquierda").style.opacity ="0.7";
-	document.getElementById("pausaHoverIzquierda").style.background ="black";
-	document.getElementById("pausaHoverIzquierda").style.display="block";
-	document.getElementById("pausaHoverDerecha").style.background="black";
-	document.getElementById("pausaHoverDerecha").style.opacity ="0.7";
-	document.getElementById("pausaHoverDerecha").style.display="block";
-}
-function dificultadOut(){
-	document.getElementById("pausaHoverDificultad").style.display="none";
-	document.getElementById("pausaHoverIzquierda").style.display ="none";
-	document.getElementById("pausaHoverIzquierda").style.background ="white";
-	document.getElementById("pausaHoverIzquierda").style.opacity="0.2";
-	document.getElementById("pausaHoverDerecha").style.display="none";
-	document.getElementById("pausaHoverDerecha").style.background ="white";
-	document.getElementById("pausaHoverDerecha").style.opacity ="0.2";
+function dificultadD(){
+	dificultad=dificil;
+	document.getElementById("finJuego").className="oculto";
+	document.getElementById("dificultadF").style.display="none";
+	document.getElementById("dificultadD").style.display="none";
+	document.getElementById("dificultadFPausa").style.display="none";
+	document.getElementById("dificultadDPausa").style.display="none";
+	intentos=0;
+	aterrizajes=0;
+	reiniciarJuego();
 }
