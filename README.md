@@ -1,4 +1,3 @@
-El readme es practicamente identico an anterior, salvo por el último punto de __Añadidos y cambios__ .
 # Documentación sobre el videojuego LunarLander, de Lenguaje de Marcas.
 En este documento se detallan los aspectos mas relevantes sobre el proyecto del videojuego web Lunar Lander.
 En la carpeta _Documentación de Proyecto_ está el .pdf que Lamiae pasó para usarlo como guía aunque la mayoría ha sido cambiado para intentar mejorar el diseño en la medida de lo posible, más adelante se detallan estos cambios. La documentación se divide en:
